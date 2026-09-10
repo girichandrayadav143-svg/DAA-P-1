@@ -3,7 +3,7 @@ n = int(input("Enter number of matrices: "))
 print("Enter dimensions:")
 p = list(map(int, input().split()))
 
-# Check dimensions
+
 if len(p) != n + 1:
     print("Error: Enter exactly", n + 1, "dimensions.")
 else:
