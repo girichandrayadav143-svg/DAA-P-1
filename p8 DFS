@@ -1,0 +1,29 @@
+
+
+n = int(input("Enter number of vertices: "))
+
+graph = {}
+
+
+for i in range(n):
+    vertex = input("Enter vertex: ")
+    neighbours = input("Enter neighbours separated by space: ").split()
+    graph[vertex] = neighbours
+
+
+def dfs(graph, start, visited=None):
+    if visited is None:
+        visited = set()
+
+    visited.add(start)
+    print(start, end=" ")
+
+    for neighbour in graph[start]:
+        if neighbour not in visited:
+            dfs(graph, neighbour, visited)
+
+# Get starting vertex
+start = input("Enter starting vertex: ")
+
+print("DFS Traversal:")
+dfs(graph, start)
