@@ -1,28 +1,14 @@
 
-from collections import deque
-graph = {
-    'A': ['B', 'C'],
-    'B': ['A', 'D', 'E'],
-    'C': ['A', 'F'],
-    'D': ['B'],
-    'E': ['B', 'F'],
-    'F': ['C', 'E']
-}
+n = int(input("Enter number of vertices: "))
 
-# Depth First Search (DFS)
-def dfs(graph, start, visited=None):
-    if visited is None:
-        visited = set()
-
-    visited.add(start)
-    print(start, end=" ")
-
-    for neighbour in graph[start]:
-        if neighbour not in visited:
-            dfs(graph, neighbour, visited)
+graph = {}
 
 
-# Breadth First Search (BFS)
+for i in range(n):
+    vertex = input("Enter vertex: ")
+    neighbours = input("Enter neighbours separated by space: ").split()
+    graph[vertex] = neighbours
+
 def bfs(graph, start):
     visited = set()
     queue = deque([start])
@@ -38,11 +24,9 @@ def bfs(graph, start):
                 queue.append(neighbour)
 
 
+start = input("Enter starting vertex: ")
 
-print("Graph:", graph)
+print("BFS Traversal:")
+bfs(graph, start)
 
-print("\nDFS Traversal:")
-dfs(graph, 'A')
-
-print("\n\nBFS Traversal:")
-bfs(graph, 'A')
+               
