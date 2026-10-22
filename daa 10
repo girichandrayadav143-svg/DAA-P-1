@@ -1,0 +1,40 @@
+
+n = int(input("Enter number of vertices: "))
+e = int(input("Enter number of edges: "))
+
+edges = []
+
+print("Enter source destination weight for each edge:")
+
+for i in range(e):
+    u, v, w = map(int, input().split())
+    edges.append([w, u, v])
+
+edges.sort()
+
+parent = list(range(n + 1))
+
+def find(x):
+    if parent[x] != x:
+        parent[x] = find(parent[x])
+    return parent[x]
+
+cost = 0
+count = 0
+
+print("Minimum Spanning Tree:")
+
+for w, u, v in edges:
+    a = find(u)
+    b = find(v)
+
+    if a != b:
+        print(u, "-", v, ":", w)
+        parent[a] = b
+        cost += w
+        count += 1
+
+if count == n - 1:
+    print("Minimum cost:", cost)
+else:
+    print("MST is not possible")
